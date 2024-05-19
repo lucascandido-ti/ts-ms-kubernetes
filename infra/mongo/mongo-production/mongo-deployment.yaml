@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: mongo-production-deployment
-          image: lucascandido/ts-ms-mongodb:latest
+          image: lucascandido/ms-mongodb-production:latest
           ports:
             - containerPort: 27018
           volumeMounts:

@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: mongo-payment-deployment
-          image: lucascandido/ts-ms-mongodb:latest
+          image: lucascandido/ms-mongodb-payment:latest
           ports:
             - containerPort: 27017
           volumeMounts:

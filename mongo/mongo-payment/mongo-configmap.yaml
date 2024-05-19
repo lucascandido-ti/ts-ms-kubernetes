@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongo-payment-configmap
+data:
+  MONGO_INITDB_ROOT_USERNAME: root
+  MONGO_INITDB_ROOT_PASSWORD: root
+  MONGO_INITDB_DATABASE: payment-manager
+  MONGO_REPLICA_HOST: localhost
+  MONGO_REPLICA_PORT: "27017"
+  MONGO_COMMAND: mongo

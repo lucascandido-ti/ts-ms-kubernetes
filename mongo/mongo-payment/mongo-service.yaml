@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-mongodb-payment
+  labels:
+    app: svc-mongodb-payment
+spec:
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+      name: mongodb-payment
+  selector:
+    app: mongo-payment-deployment

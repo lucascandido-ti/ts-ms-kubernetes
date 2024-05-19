@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pg-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pg-deployment
+  template:
+    metadata:
+      name: pg-deployment
+      labels:
+        app: pg-deployment
+    spec:
+      containers:
+        - name: pg-deployment
+          image: postgres:latest
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - mountPath: /data/pgdb
+              name: postgresdb
+          envFrom:
+            - configMapRef:
+                name: pg-configmap
+          resources:
+            limits:
+              memory: 512Mi
+      volumes:
+        - name: postgresdb
+          persistentVolumeClaim:
+            claimName: postgres-pvc

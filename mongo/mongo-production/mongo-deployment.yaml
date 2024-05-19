@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-production-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo-production-deployment
+  template:
+    metadata:
+      name: mongo-production-deployment
+      labels:
+        app: mongo-production-deployment
+    spec:
+      containers:
+        - name: mongo-production-deployment
+          image: lucascandido/ts-ms-mongodb:latest
+          ports:
+            - containerPort: 27018
+          volumeMounts:
+            - mountPath: /data/mongodb
+              name: mongodb
+          envFrom:
+            - configMapRef:
+                name: mongo-production-configmap
+          resources:
+            limits:
+              memory: 512Mi
+      volumes:
+        - name: mongodb
+          persistentVolumeClaim:
+            claimName: mongo-production-pvc
